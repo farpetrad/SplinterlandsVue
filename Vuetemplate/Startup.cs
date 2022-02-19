@@ -81,7 +81,7 @@ namespace VueTemplate
 
                     context.Request.EnableBuffering();
 
-                    context.Response.Headers.Add("Content-Security-Policy", $"default-src 'self'; script-src 'self' 'nonce-{currentNonce}' unpkg.com; style-src 'self' 'nonce-{currentNonce}' use.fontawesome.com maxcdn.bootstrapcdn.com fonts.googleapis.com; font-src fonts.gstatic.com 'nonce-{currentNonce}'; img-src 'self'");
+                    context.Response.Headers.Add("Content-Security-Policy", $"default-src 'self'; script-src 'self' 'nonce-{currentNonce}' unpkg.com; style-src 'self' 'nonce-{currentNonce}' use.fontawesome.com maxcdn.bootstrapcdn.com fonts.googleapis.com; font-src fonts.gstatic.com 'nonce-{currentNonce}'; img-src 'self' d36mxiodymuqjm.cloudfront.net data:");
                     context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                     context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
                     context.Response.Headers.Add("X-Xss-Protection", "1");

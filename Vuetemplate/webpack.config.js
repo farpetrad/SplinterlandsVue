@@ -48,6 +48,7 @@ module.exports = {
   resolve: {
     extensions: ['.vue', '.js', '.json'],
     alias: {
+      '@': path.resolve(__dirname, appbasePath),
       components: path.resolve(__dirname, appbasePath + 'components'),
       views: path.resolve(__dirname, appbasePath + 'views'),
     }
@@ -80,6 +81,7 @@ module.exports = {
           {
             loader: 'sass-loader',
               options: {
+                  additionalData: "@import '@/scss/sm.scss';",
                   sassOptions: {
                     indentedSyntax: false,
                   }
@@ -96,6 +98,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
+                additionalData: "@import '@/scss/sm.scss'",
                 sassOptions: {
                     indentedSyntax: true,
                 }
