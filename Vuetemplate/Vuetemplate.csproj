@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <StartupObject>VueTemplate.Program</StartupObject>
+  </PropertyGroup>
+ 
+
+</Project>
