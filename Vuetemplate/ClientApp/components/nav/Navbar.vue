@@ -1,6 +1,6 @@
 ﻿<template>
     <div id="sm-navbar">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-0">
             <div class="navbar-header">
                 <a class="navbar-brand py-0 mr-0" href="#"></a>
             </div>
@@ -16,7 +16,16 @@
                 <div class="navbar-nav mr-auto">
                     <template v-for="(button,index) in buttons" :key="index">
                         <a class="nav-item nav-link" :href="button.href" :id="button.id">
-                            <img :src="button.img" :alt="button.alt" :id="'img-'+ button.id" class="navbar-icon" @mouseover="button.show = true" @mouseleave="button.show = false" />
+                            <div class="d-lg-none pl-3 row">
+                                <div class="col-2 col-md-1">
+                                    <img :src="button.img" :alt="button.alt" :id="'img-'+ button.id" class="navbar-icon" @mouseover="button.show = true" @mouseleave="button.show = false" />
+                                </div>
+                                <div class="col-10 pl-0 col-center">
+                                    <div class="nav-item-mbl-text">{{button.label}}
+                                </div>
+                                </div>
+                            </div>
+                            <img :src="button.img" :alt="button.alt" :id="'img-'+ button.id" class="navbar-icon d-none d-lg-block" @mouseover="button.show = true" @mouseleave="button.show = false" />
                             <div v-show="button.show" class="nav-item-text">{{button.label}}</div>
                         </a>
                     </template>
@@ -59,14 +68,12 @@
 <style lang="scss">
     #sm-navbar {
 
-        @media (min-width: 992px) {
-            .navbar {
-                max-height: 80px;
-            }
-        }
-
         .navbar {
             background-color: $navbar-bg;
+
+            .navbar-header {
+                max-height: 64px;
+            }
 
             .nav-item {
                 position: relative;
@@ -75,7 +82,7 @@
             .nav-item-text {
                 position: absolute;
                 color: $navbar-li-active-color;
-                font-family: 'OpenSans-Bold';
+                font-family: OpenSans-Bold;
                 font-size: 10px;
                 font-weight: bold;
                 width: 60px;
@@ -88,17 +95,30 @@
                 left: -0.5vw;
             }
 
+            .nav-item-mbl-text {
+                font-family: OpenSans;
+                text-transform: uppercase;
+                color: #96d3d3;
+            }
+
             .navbar-icon {
                 height: 33px;
                 width: 33px;
                 position: relative;
             }
+
+            .col-center {
+                margin-top: auto;
+                margin-bottom: auto;
+            }
         }
 
         .navbar-brand {
             background-image: url(https://d36mxiodymuqjm.cloudfront.net/website/icons/img_icon_splinterlands.svg);
-            width: 78px;
-            height: 78px;
+            max-width: 78px;
+            max-height: 78px;
+            min-width: 64px;
+            min-height: 64px;
             background-repeat: no-repeat;
         }
     }
