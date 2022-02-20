@@ -17,7 +17,6 @@
                     <template v-for="(button,index) in buttons" :key="index">
                         <nav-item :button="button"></nav-item> 
                     </template>
-                    
                 </div>
             </div>
         </nav>
