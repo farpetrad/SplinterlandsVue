@@ -77,7 +77,7 @@
             height: 16px;
             line-height: 1.6;
             text-transform: uppercase;
-            left: -0.5vw;
+            left: -0.35vw;
             color: $navbar-li-active-color;
         }
 
