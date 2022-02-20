@@ -1,5 +1,9 @@
 ﻿<template>
-    <a class="nav-item nav-link" :href="button.href" :id="button.id">
+    <a class="nav-item nav-link" 
+       :href="button.href" 
+       :id="button.id" 
+       @mouseover="onMouseOverIcon" 
+       @mouseleave="onMouseLeaveIcon">
         <div class="d-lg-none pl-3 row">
             <div class="col-2 col-md-1">
                 <img :src="button.img" 
@@ -16,8 +20,7 @@
              :alt="button.alt" 
              :id="'img-mbl-'+ button.id" 
              class="navbar-icon d-none d-lg-block" 
-             @mouseover="onMouseOverIcon" 
-             @mouseleave="onMouseLeaveIcon" />
+              />
         <div v-show="state.showLabel" class="nav-item-text">{{button.label}}</div>
     </a>
 </template>
