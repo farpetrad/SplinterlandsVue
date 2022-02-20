@@ -15,8 +15,26 @@
             <div class="collapse navbar-collapse" ref="navbarContent">
                 <div class="navbar-nav mr-auto">
                     <template v-for="(button,index) in buttons" :key="index">
-                        <nav-item :button="button"></nav-item> 
+                        <nav-item :button="button"></nav-item>
                     </template>
+                </div>
+
+                <div class="ml-auto dropdown">
+                    <a class="dropdown-toggle"
+                       ref="langDropdownTrigger"
+                       href="#"
+                       role="button"
+                       id="lang-dropdown"
+                       data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       @click="handleLanguageMenuClick">EN</a>
+
+                    <div class="dropdown-menu" aria-labelledby="lang-dropdown" ref="langDropdownMenu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -39,18 +57,42 @@
                     { img: 'https://d36mxiodymuqjm.cloudfront.net/website/nav/icon_nav_events_active@2x.png', id: 'menu_item_events', href: '', alt: 'Events', label: 'Events', show: false,},
                     { img: 'https://d36mxiodymuqjm.cloudfront.net/website/nav/icon_nav_guilds_active@2x.png', id: 'menu_item_guilds', href: '', alt: 'Guilds', label: 'Guilds', show: false,},
                     { img: 'https://d36mxiodymuqjm.cloudfront.net/website/nav/icon_nav_faq_active@2x.png', id: 'menu_item_help', href: '', alt: 'Help', label: 'Help', show: false, }
-                ]
+                ],
+                langMenuExpanded: false,
             }
         },
-      methods: {
-        toggleMenu() {
-          if (!this.$refs || !this.$refs.navbarToggler || !this.$refs.navbarContent) {
-            return;
-          }
-          this.$refs.navbarToggler.classList.toggle('collapsed');
-          this.$refs.navbarContent.classList.toggle('show');
+        methods: {
+            toggleMenu() {
+                  if (!this.$refs || !this.$refs.navbarToggler || !this.$refs.navbarContent) {
+                    return;
+                  }
+                  this.$refs.navbarToggler.classList.toggle('collapsed');
+                  this.$refs.navbarContent.classList.toggle('show');
+              },
+              handleLanguageMenuClick() {
+                  if (!this.$refs || !this.$refs.langDropdownMenu) {
+                      return;
+                  }
+                  this.$refs.langDropdownMenu.classList.toggle('show');
+                  this.langMenuExpanded = !this.langMenuExpanded;
+              },
+            handleGlobalClick(event) {
+                if (!this.langMenuExpanded) return;
+                if (event && this.$refs && this.$refs.langDropdownTrigger &&
+                    !this.$refs.langDropdownTrigger.contains(event.target) &&
+                    !this.$refs.langDropdownMenu.contains(event.target)) {
+                    this.handleLanguageMenuClick();
+                }
+              },
         },
-      },
+        mounted() {
+           const touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+            window.addEventListener(touchEvent, this.handleGlobalClick);
+        },
+        beforeDestroy() {
+            const touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+            window.removeEventListener(touchEvent, this.handleGlobalClick);
+        }
     };
 </script>
 
@@ -77,6 +119,18 @@
             min-width: 64px;
             min-height: 64px;
             background-repeat: no-repeat;
+        }
+
+        @media (min-width: 992px) {
+            .dropdown-menu {
+                left: -17vw;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .dropdown-menu {
+                left: -10vw;
+            }
         }
     }
 </style>

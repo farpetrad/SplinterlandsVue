@@ -84,8 +84,6 @@
             color: $navbar-li-active-color;
         }
 
-
-
         .nav-item-mbl-text {
             font-family: OpenSans;
             text-transform: uppercase;
