@@ -18,22 +18,42 @@
                         <nav-item :button="button"></nav-item>
                     </template>
                 </div>
+                <div class="ml-auto">
+                    <div class="dropdown row h-100 pt-4 mx-auto">
+                        <div class="col-12 col-md-8">
+                            <a class="dropdown-toggle text-uppercase"
+                               ref="profileDropdownTrigger"
+                               href="#"
+                               role="button"
+                               id="profile-dropdown"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false"
+                               @click="handleProfileMenuClick">Farpetrad</a>
 
-                <div class="ml-auto dropdown">
-                    <a class="dropdown-toggle"
-                       ref="langDropdownTrigger"
-                       href="#"
-                       role="button"
-                       id="lang-dropdown"
-                       data-toggle="dropdown"
-                       aria-haspopup="true"
-                       aria-expanded="false"
-                       @click="handleLanguageMenuClick">EN</a>
+                            <div class="dropdown-menu" aria-labelledby="profile-dropdpwn" ref="profileDropdownMenu">
+                                <a class="dropdown-item" href="#">Action A</a>
+                                <a class="dropdown-item" href="#">Another action A</a>
+                                <a class="dropdown-item" href="#">Something else here A</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <a class="dropdown-toggle"
+                               ref="langDropdownTrigger"
+                               href="#"
+                               role="button"
+                               id="lang-dropdown"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false"
+                               @click="handleLanguageMenuClick">EN</a>
 
-                    <div class="dropdown-menu" aria-labelledby="lang-dropdown" ref="langDropdownMenu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-menu" aria-labelledby="lang-dropdown" ref="langDropdownMenu">
+                                <a class="dropdown-item" href="#">Action B</a>
+                                <a class="dropdown-item" href="#">Another action B</a>
+                                <a class="dropdown-item" href="#">Something else here B</a>
+                            </div>
+                        </div>s
                     </div>
                 </div>
             </div>
@@ -59,39 +79,61 @@
                     { img: 'https://d36mxiodymuqjm.cloudfront.net/website/nav/icon_nav_faq_active@2x.png', id: 'menu_item_help', href: '', alt: 'Help', label: 'Help', show: false, }
                 ],
                 langMenuExpanded: false,
+                profileMenuExpanded: false,
+                mobileMenu: false,
             }
         },
         methods: {
             toggleMenu() {
-                  if (!this.$refs || !this.$refs.navbarToggler || !this.$refs.navbarContent) {
+                if (!this.$refs || !this.$refs.navbarToggler || !this.$refs.navbarContent) {
+                  return;
+                }
+                this.$refs.navbarToggler.classList.toggle('collapsed');
+                this.$refs.navbarContent.classList.toggle('show');
+            },
+            handleProfileMenuClick() {
+                if (!this.$refs || !this.$refs.profileDropdownMenu) {
                     return;
-                  }
-                  this.$refs.navbarToggler.classList.toggle('collapsed');
-                  this.$refs.navbarContent.classList.toggle('show');
-              },
-              handleLanguageMenuClick() {
-                  if (!this.$refs || !this.$refs.langDropdownMenu) {
-                      return;
-                  }
-                  this.$refs.langDropdownMenu.classList.toggle('show');
-                  this.langMenuExpanded = !this.langMenuExpanded;
-              },
+                }
+                this.$refs.profileDropdownMenu.classList.toggle('show');
+                this.profileMenuExpanded = !this.profileMenuExpanded;
+            },
+            handleLanguageMenuClick() {
+                if (!this.$refs || !this.$refs.langDropdownMenu) {
+                    return;
+                }
+                this.$refs.langDropdownMenu.classList.toggle('show');
+                this.langMenuExpanded = !this.langMenuExpanded;
+            },
             handleGlobalClick(event) {
-                if (!this.langMenuExpanded) return;
-                if (event && this.$refs && this.$refs.langDropdownTrigger &&
+                if (!this.langMenuExpanded && !this.profileMenuExpanded) return;
+                if (!event && !this.$refs) return;
+
+                if (this.langMenuExpanded && this.$refs.langDropdownTrigger &&
                     !this.$refs.langDropdownTrigger.contains(event.target) &&
                     !this.$refs.langDropdownMenu.contains(event.target)) {
                     this.handleLanguageMenuClick();
                 }
-              },
+                if (this.profileMenuExpanded && this.$refs.profileDropdownTrigger &&
+                    !this.$refs.profileDropdownTrigger.contains(event.target) &&
+                    !this.$refs.profileDropdownMenu.contains(event.target)) {
+                    this.handleProfileMenuClick();
+                }
+            },
+            handleResize() {
+                this.mobileMenu = window.matchMedia("screen and (max-width:767px)").matches;
+            }
         },
         mounted() {
            const touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
             window.addEventListener(touchEvent, this.handleGlobalClick);
+            window.addEventListener('resize', this.handleResize)
+            this.handleResize();
         },
         beforeDestroy() {
             const touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
             window.removeEventListener(touchEvent, this.handleGlobalClick);
+            window.removeEventListener('resize', this.handleResize)
         }
     };
 </script>
@@ -121,15 +163,36 @@
             background-repeat: no-repeat;
         }
 
-        @media (min-width: 992px) {
-            .dropdown-menu {
-                left: -17vw;
-            }
-        }
+        .dropdown {
+            &:not(.dropright) {
+                .dropdown-menu {
+                    left: 4vw;
+                }
 
-        @media (min-width: 1200px) {
-            .dropdown-menu {
-                left: -10vw;
+                @media (min-width: 576px) {
+                    .dropdown-menu {
+                        left: 2vw;
+                    }
+                }
+
+                @media (min-width: 992px) {
+                    .dropdown-menu {
+                        left: -9vw;
+                    }
+                }
+
+                @media (min-width: 1200px) {
+                    .dropdown-menu {
+                        left: -10vw;
+                    }
+                }
+            }
+
+            &.dropright {
+                .dropdown-menu {
+                    top: 0;
+                    left: 18vw;
+                }
             }
         }
     }
