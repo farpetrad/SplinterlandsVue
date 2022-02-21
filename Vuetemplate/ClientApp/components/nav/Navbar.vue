@@ -41,7 +41,7 @@
                                 <a class="dropdown-item" href="#">Something else here A</a>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-4 pt-2 pt-lg-0">
                             <a class="dropdown-toggle"
                                ref="langDropdownTrigger"
                                href="#"
@@ -57,7 +57,7 @@
                                 <a class="dropdown-item" href="#">Another action B</a>
                                 <a class="dropdown-item" href="#">Something else here B</a>
                             </div>
-                        </div>s
+                        </div>
                     </div>
                 </div>
             </div>
