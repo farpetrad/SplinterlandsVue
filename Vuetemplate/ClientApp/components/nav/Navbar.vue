@@ -19,8 +19,12 @@
                     </template>
                 </div>
                 <div class="ml-auto">
-                    <div class="dropdown row h-100 pt-4 mx-auto">
-                        <div class="col-12 col-md-8">
+                    <div :class="{ 
+                           'dropdown row h-100 pt-4 mx-auto' : true,
+                            'dropright' : mobileMenu
+                         }"
+                         >
+                        <div class="col-12 col-lg-8">
                             <a class="dropdown-toggle text-uppercase"
                                ref="profileDropdownTrigger"
                                href="#"
@@ -31,13 +35,13 @@
                                aria-expanded="false"
                                @click="handleProfileMenuClick">Farpetrad</a>
 
-                            <div class="dropdown-menu" aria-labelledby="profile-dropdpwn" ref="profileDropdownMenu">
+                            <div class="dropdown-menu dropdown-menu-profile" aria-labelledby="profile-dropdpwn" ref="profileDropdownMenu">
                                 <a class="dropdown-item" href="#">Action A</a>
                                 <a class="dropdown-item" href="#">Another action A</a>
                                 <a class="dropdown-item" href="#">Something else here A</a>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-lg-4">
                             <a class="dropdown-toggle"
                                ref="langDropdownTrigger"
                                href="#"
@@ -48,7 +52,7 @@
                                aria-expanded="false"
                                @click="handleLanguageMenuClick">EN</a>
 
-                            <div class="dropdown-menu" aria-labelledby="lang-dropdown" ref="langDropdownMenu">
+                            <div class="dropdown-menu dropdown-menu-language" aria-labelledby="lang-dropdown" ref="langDropdownMenu">
                                 <a class="dropdown-item" href="#">Action B</a>
                                 <a class="dropdown-item" href="#">Another action B</a>
                                 <a class="dropdown-item" href="#">Something else here B</a>
@@ -165,33 +169,32 @@
 
         .dropdown {
             &:not(.dropright) {
-                .dropdown-menu {
+                .dropdown-menu-language {
                     left: 4vw;
                 }
 
-                @media (min-width: 576px) {
-                    .dropdown-menu {
-                        left: 2vw;
-                    }
+                .dropdown-menu-profile {
+                    left: 6vw;
                 }
 
                 @media (min-width: 992px) {
-                    .dropdown-menu {
-                        left: -9vw;
+                    .dropdown-menu-language {
+                        left: -16vw;
+                    }
+
+                    .dropdown-menu-profile {
+                        left: -10vw;
                     }
                 }
 
                 @media (min-width: 1200px) {
-                    .dropdown-menu {
+                    .dropdown-menu-language {
                         left: -10vw;
                     }
-                }
-            }
 
-            &.dropright {
-                .dropdown-menu {
-                    top: 0;
-                    left: 18vw;
+                    .dropdown-menu-profile {
+                        left: -6vw;
+                    }
                 }
             }
         }
