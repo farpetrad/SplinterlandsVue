@@ -24,12 +24,7 @@
                             'dropright pt-3' : mobileMenu
                          }">
                         <div :class="{ 'mr-2': !mobileMenu, 'col-12': mobileMenu }">
-                            <div class="dropdown-profile">
-                                <img src="https://d36mxiodymuqjm.cloudfront.net/website/icons/avatars/avatar-frame_diamond.png"
-                                     class="dropdown-profile-frame" />
-                                <img src="https://d36mxiodymuqjm.cloudfront.net/website/icons/avatars/avatar_12.png"
-                                     class="dropdown-profile-avatar" />
-                            </div>
+                            <player-profile @click="handleProfileMenuClick"></player-profile>
                             <a class="dropdown-toggle text-uppercase ml-4 ml-lg-0"
                                ref="profileDropdownTrigger"
                                href="#"
@@ -72,9 +67,14 @@
 
 <script>
     import NavItem from "./NavItem";
+    import PlayerProfile from "../PlayerProfile";
+
     export default {
         name: 'nav-bar',
-        components: { 'nav-item': NavItem },
+        components: {
+            'nav-item': NavItem,
+            'player-profile': PlayerProfile
+        },
         data() {
             return {
                 buttons: [
@@ -100,19 +100,21 @@
                 this.$refs.navbarToggler.classList.toggle('collapsed');
                 this.$refs.navbarContent.classList.toggle('show');
             },
-            handleProfileMenuClick() {
+            handleProfileMenuClick(e) {
                 if (!this.$refs || !this.$refs.profileDropdownMenu) {
                     return;
                 }
                 this.$refs.profileDropdownMenu.classList.toggle('show');
                 this.profileMenuExpanded = !this.profileMenuExpanded;
+                e.stopPropagation();
             },
-            handleLanguageMenuClick() {
+            handleLanguageMenuClick(e) {
                 if (!this.$refs || !this.$refs.langDropdownMenu) {
                     return;
                 }
                 this.$refs.langDropdownMenu.classList.toggle('show');
                 this.langMenuExpanded = !this.langMenuExpanded;
+                e.stopPropagation();
             },
             handleGlobalClick(event) {
                 if (!this.langMenuExpanded && !this.profileMenuExpanded) return;
@@ -242,7 +244,7 @@
                 @media (max-width: 576px) {
                     .dropdown-menu-language {
                         left: 10vw;
-                        top: 2.5vh;
+                        top: 5vh;
                     }
 
                     .dropdown-menu-profile {
