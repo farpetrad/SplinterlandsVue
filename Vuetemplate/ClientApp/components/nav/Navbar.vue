@@ -23,41 +23,23 @@
                            'dropdown row h-100 pt-1 mx-auto px-3  mb-4 mb-lg-0' : true,
                             'dropright pt-3' : mobileMenu
                          }">
-                        <div :class="{ 'mr-2': !mobileMenu, 'col-12': mobileMenu }">
-                            <player-profile @click="handleProfileMenuClick"></player-profile>
-                            <a class="dropdown-toggle text-uppercase ml-4 ml-lg-0"
-                               ref="profileDropdownTrigger"
-                               href="#"
-                               role="button"
-                               id="profile-dropdown"
-                               data-toggle="dropdown"
-                               aria-haspopup="true"
-                               aria-expanded="false"
-                               @click="handleProfileMenuClick">Farpetrad</a>
-
-                            <div class="dropdown-menu dropdown-menu-profile" aria-labelledby="profile-dropdpwn" ref="profileDropdownMenu">
+                        <dropdown-button label="Farpetrad" :class="{ 'ml-2': !mobileMenu, 'col-12 pt-3': mobileMenu }">
+                            <template v-slot:content="{ on }">
+                                <player-profile @click="on"></player-profile>
+                            </template>
+                            <template v-slot:dropdownItems>
                                 <a class="dropdown-item" href="#">Action A</a>
                                 <a class="dropdown-item" href="#">Another action A</a>
                                 <a class="dropdown-item" href="#">Something else here A</a>
-                            </div>
-                        </div>
-                        <div :class="{ 'ml-2': !mobileMenu, 'col-12 pt-3': mobileMenu }">
-                            <a class="dropdown-toggle ml-4 ml-lg-0"
-                               ref="langDropdownTrigger"
-                               href="#"
-                               role="button"
-                               id="lang-dropdown"
-                               data-toggle="dropdown"
-                               aria-haspopup="true"
-                               aria-expanded="false"
-                               @click="handleLanguageMenuClick">EN</a>
-
-                            <div class="dropdown-menu dropdown-menu-language" aria-labelledby="lang-dropdown" ref="langDropdownMenu">
+                            </template>
+                        </dropdown-button>
+                        <dropdown-button label="EN" :class="{ 'ml-2': !mobileMenu, 'col-12 pt-3': mobileMenu }">
+                            <template v-slot:dropdownItems>
                                 <a class="dropdown-item" href="#">Action B</a>
                                 <a class="dropdown-item" href="#">Another action B</a>
                                 <a class="dropdown-item" href="#">Something else here B</a>
-                            </div>
-                        </div>
+                            </template>
+                        </dropdown-button>
                     </div>
                 </div>
             </div>
@@ -68,12 +50,14 @@
 <script>
     import NavItem from "./NavItem";
     import PlayerProfile from "../PlayerProfile";
+    import DropdownButton from './DropdownButton';
 
     export default {
         name: 'nav-bar',
         components: {
             'nav-item': NavItem,
-            'player-profile': PlayerProfile
+            'player-profile': PlayerProfile,
+            'dropdown-button': DropdownButton
         },
         data() {
             return {
@@ -87,8 +71,6 @@
                     { img: 'https://d36mxiodymuqjm.cloudfront.net/website/nav/icon_nav_guilds_active@2x.png', id: 'menu_item_guilds', href: '', alt: 'Guilds', label: 'Guilds',},
                     { img: 'https://d36mxiodymuqjm.cloudfront.net/website/nav/icon_nav_faq_active@2x.png', id: 'menu_item_help', href: '', alt: 'Help', label: 'Help',}
                 ],
-                langMenuExpanded: false,
-                profileMenuExpanded: false,
                 mobileMenu: false,
             }
         },
@@ -99,51 +81,16 @@
                 }
                 this.$refs.navbarToggler.classList.toggle('collapsed');
                 this.$refs.navbarContent.classList.toggle('show');
-            },
-            handleProfileMenuClick(e) {
-                if (!this.$refs || !this.$refs.profileDropdownMenu) {
-                    return;
-                }
-                this.$refs.profileDropdownMenu.classList.toggle('show');
-                this.profileMenuExpanded = !this.profileMenuExpanded;
-                e.stopPropagation();
-            },
-            handleLanguageMenuClick(e) {
-                if (!this.$refs || !this.$refs.langDropdownMenu) {
-                    return;
-                }
-                this.$refs.langDropdownMenu.classList.toggle('show');
-                this.langMenuExpanded = !this.langMenuExpanded;
-                e.stopPropagation();
-            },
-            handleGlobalClick(event) {
-                if (!this.langMenuExpanded && !this.profileMenuExpanded) return;
-                if (!event && !this.$refs) return;
-
-                if (this.langMenuExpanded && this.$refs.langDropdownTrigger &&
-                    !this.$refs.langDropdownTrigger.contains(event.target) &&
-                    !this.$refs.langDropdownMenu.contains(event.target)) {
-                    this.handleLanguageMenuClick();
-                }
-                if (this.profileMenuExpanded && this.$refs.profileDropdownTrigger &&
-                    !this.$refs.profileDropdownTrigger.contains(event.target) &&
-                    !this.$refs.profileDropdownMenu.contains(event.target)) {
-                    this.handleProfileMenuClick();
-                }
-            },
+            },           
             handleResize() {
                 this.mobileMenu = window.matchMedia("screen and (max-width:768px)").matches;
             }
         },
         mounted() {
-           const touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
-            window.addEventListener(touchEvent, this.handleGlobalClick);
             window.addEventListener('resize', this.handleResize)
             this.handleResize();
         },
         beforeDestroy() {
-            const touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
-            window.removeEventListener(touchEvent, this.handleGlobalClick);
             window.removeEventListener('resize', this.handleResize)
         }
     };
