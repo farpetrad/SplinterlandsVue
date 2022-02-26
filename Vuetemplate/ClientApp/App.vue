@@ -7,10 +7,12 @@
     </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-};
+<script setup>
+    import { provide, ref } from 'vue';
+    import screenSize from './utilities/screensize.js';
+
+    const size = ref(screenSize);
+    provide('screenSize', size);
 </script>
 
 <style lang="scss">

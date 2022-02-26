@@ -39,9 +39,10 @@
                             <div class="col-12 col-md-6 offset-md-3">
                                 <img class="sp-logo mt-5 img-fluid" alt="Splinterlands" src="https://d36mxiodymuqjm.cloudfront.net/website/home/splinterlands_logo_fx_1000.png" />
                                 <div class="about container">
+                                    <div class="row spacer"></div>
                                     <div class="row mt-5 pt-3">
                                         <div class="col-12">
-                                            <h7>Welcome back Farpetrad</h7>
+                                            <h5>Welcome back Farpetrad</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +57,7 @@
 
 <script setup>
     import { provide, readonly, ref } from 'vue';
-
+    
     // use ref instead of state as this will be reactive when used by inject('modalOpen')
     const showModal = ref(false);
     const showDrawer = ref(false);
@@ -94,11 +95,12 @@
         background-size: cover;
         display: flex;
         align-content: stretch;
-        height: min(100vh,600px);
 
         .sp-logo {
             z-index: 100;
             position: relative;
+            top: 0;
+            left: 1vw;
         }
 
         .about {
@@ -110,6 +112,12 @@
             left: -3vw;
             top: -9vh;
             color: $text-color;
+        }
+
+        .row {
+            &.spacer {
+                min-height: 10vh;
+            }
         }
     }
 </style>

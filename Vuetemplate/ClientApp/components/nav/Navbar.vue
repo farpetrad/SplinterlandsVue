@@ -8,11 +8,14 @@
                     type="button"
                     id="navbar-toggler"
                     ref="navbarToggler"
-                    @click="toggleMenu">
+                    @click="toggleMenu"
+                    aria-controls="navbarContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" />
             </button>
 
-            <div class="collapse navbar-collapse" ref="navbarContent">
+            <div class="collapse navbar-collapse" ref="navbarContent" id="navbarContent">
                 <div class="navbar-nav mr-auto">
                     <template v-for="(button,index) in buttons" :key="index">
                         <nav-item :button="button"></nav-item>
@@ -81,6 +84,12 @@
                 }
                 this.$refs.navbarToggler.classList.toggle('collapsed');
                 this.$refs.navbarContent.classList.toggle('show');
+                if (this.$refs.navbarToggler.ariaExpanded === 'true') {
+                    this.$refs.navbarToggler.ariaExpanded = 'false';
+                }
+                else {
+                    this.$refs.navbarToggler.ariaExpanded = 'true';
+                }
             },           
             handleResize() {
                 this.mobileMenu = window.matchMedia("screen and (max-width:768px)").matches;
