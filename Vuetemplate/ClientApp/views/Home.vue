@@ -36,13 +36,16 @@
                 <section id="play-now" class="h-100 w-100">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12 col-md-6 offset-md-3">
+                            <div class="col-12 col-xl-6 col-md-8 offset-xl-3 offset-md-2">
                                 <img class="sp-logo mt-5 img-fluid" alt="Splinterlands" src="https://d36mxiodymuqjm.cloudfront.net/website/home/splinterlands_logo_fx_1000.png" />
                                 <div class="about container">
                                     <div class="row spacer"></div>
-                                    <div class="row mt-5 pt-3">
-                                        <div class="col-12">
-                                            <h5>Welcome back Farpetrad</h5>
+                                    <div class="row mb-5">
+                                        <div class="col-12 pb-3 text-center">
+                                            <h6 id="about-welcome-msg">Welcome back Farpetrad</h6>
+                                        </div>
+                                        <div class="offset-0 offset-lg-2 col-12 col-lg-8 offset-md-1 col-md-10">
+                                            <button id="play-now-btn" class="w-100">Play Now</button>
                                         </div>
                                     </div>
                                 </div>
@@ -103,9 +106,23 @@
             left: 1vw;
         }
 
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            .sp-logo {
+                left: 8vw;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .about {
+                &.container{
+                    left: 0;
+                }
+            }
+        }
+
         @media (max-width: 991.98px) {
             .about {
-                left: 0.7vw;
+                left: -3vw;
             }
         }
 
@@ -122,13 +139,42 @@
         }
 
         .about {
-            background: rgba(0,0,0,0.75);
-            border-radius: 8px;
-            padding: 40px;
-            z-index: 0;
-            position: relative;
-            top: -9vh;
-            color: $text-color;
+            &.container {
+                background: rgba(0,0,0,0.75);
+                border-radius: 8px;
+                padding: 40px;
+                z-index: 0;
+                position: relative;
+                top: -9vh;
+                color: $text-color;
+
+                #about-welcome-msg {
+                    text-transform: uppercase;
+                }
+
+                #play-now-btn {
+                    background: linear-gradient(180deg,#ffffb7 0,#ff9300 16%,#650000 82%,#f00 100%);
+                    border: 2px solid #fff188;
+                    border-radius: 6px;
+                    padding: 8px 64px;
+                    transition: transform .2s ease-out;
+                    color: #fff7b9;
+                    font-family: nanami-bold;
+                    font-size: 30px;
+                    text-shadow: 0 0 8px #feffddd5;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+
+                @media (max-width: 991.98px) {
+                    #play-now-btn {
+                        font-size: 24px !important;
+                    }
+                }
+            }
         }
 
         .row {
