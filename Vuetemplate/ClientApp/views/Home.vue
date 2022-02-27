@@ -58,18 +58,27 @@
                         <div class="row">
                             <div class="col-12 col-md-4 text-center" id="how-to-battle">
                                 <a href="#">
-                                    <h6 class="motion-glow">how to battle</h6>
+                                    <h6 class="motion-glow heading motion-glow-tall">how to battle</h6>
                                 </a>
                             </div>
                             <div class="col-12 col-md-4 text-center" id="card-ownership">
                                 <a href="#">
-                                    <h6 class="motion-glow">card ownership</h6>
+                                    <h6 class="motion-glow heading motion-glow-tall">card ownership</h6>
                                 </a>
                             </div>
                             <div class="col-12 col-md-4 text-center" id="community">
                                 <a href="#">
-                                    <h6 class="motion-glow">community</h6>
+                                    <h6 class="motion-glow heading motion-glow-tall">community</h6>
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="status" class="pt-5 pb-3">
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h6 class="heading">status</h6>
                             </div>
                         </div>
                     </div>
@@ -105,12 +114,53 @@
             h6 {
                 text-transform: uppercase;
 
-                &.motion-glow {
-                    position: absolute;
-                    top: 50%;
-                    left: 40%;
+                &.heading {
+                    color: white;
+                    font-family: nanami-bold;
+                    font-size: 46px;
+                    text-align: center;
+                    text-shadow: 0 0 12px #ffffcbbe;
+
+                    &:hover {
+                        text-decoration: none;
+                        outline: 0;
+                        text-shadow: 0 0 12px rgb(0 0 0 / 75%);
+                    }
                 }
             }
+
+
+            a {
+                text-decoration: none;
+
+                h6 {
+                    &.motion-glow {
+                        position: absolute;
+                        top: 50%;
+                        left: 20%;
+
+                        &:before {
+                            content: "";
+                            background: linear-gradient(90deg,rgba(0,0,0,0) 15%,rgba(0,0,0,0.8) 50%,rgba(0,0,0,0) 85%);
+                            z-index: 0;
+                            display: block;
+                            width: 100%;
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            padding-left: 20%;
+                            padding-right: 20%;
+                        }
+                    }
+
+                    &.motion-glow-tall {
+                        &:before {
+                            height: 310%;
+                        }
+                    }
+                }
+            }
+
 
             .overlay {
                 display: block;
@@ -236,6 +286,13 @@
                     background-size: cover;
                     min-height: 300px; // don't lke this
                 }
+            }
+
+            #status {
+                background-image: url("https://d36mxiodymuqjm.cloudfront.net/website/home/bg_status.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
             }
         }
     }
