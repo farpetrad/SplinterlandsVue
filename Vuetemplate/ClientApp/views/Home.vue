@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="container-fluid sitepage">
+    <div id="home" class="container-fluid sitepage">
         <div class="row">
             <div class="col-2 pl-0">
                 <teleport to="#target" :disabled="!showDrawer">
@@ -33,7 +33,7 @@
                 </transition>
             </div>
             <div class="col-12 px-0 mx-0">
-                <section id="play-now" class="h-100 w-100">
+                <section id="play-now">
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-xl-6 col-md-8 offset-xl-3 offset-md-2">
@@ -49,6 +49,27 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="about-player">
+                    <div class="container-fluid px-0 h-100">
+                        <div class="row">
+                            <div class="col-12 col-md-4 text-center" id="how-to-battle">
+                                <a href="#">
+                                    <h6 class="motion-glow">how to battle</h6>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4 text-center" id="card-ownership">
+                                <a href="#">
+                                    <h6 class="motion-glow">card ownership</h6>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4 text-center" id="community">
+                                <a href="#">
+                                    <h6 class="motion-glow">community</h6>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -79,107 +100,142 @@
 </script>
 
 <style lang="scss">
-    .overlay{
-        display:block;
-        position:fixed;
-        top:0;
-        width:100vw;
-        height:100vh;
+    #home {
+        &.sitepage {
+            h6 {
+                text-transform: uppercase;
 
-        background: rgba(0,0,0,0.7);
-        z-index:1100;
-        opacity:1;
-    }
-
-    #play-now {
-        background-image: url(https://d36mxiodymuqjm.cloudfront.net/website/home/bg_home_hero_chaos.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: flex;
-        align-content: stretch;
-
-        .sp-logo {
-            z-index: 100;
-            position: relative;
-            top: 0;
-            left: 1vw;
-        }
-
-        @media (min-width: 992px) and (max-width: 1199.98px) {
-            .sp-logo {
-                left: 8vw;
-            }
-        }
-
-        @media (max-width: 575.98px) {
-            .about {
-                &.container{
-                    left: 0;
+                &.motion-glow {
+                    position: absolute;
+                    top: 50%;
+                    left: 40%;
                 }
             }
-        }
 
-        @media (max-width: 991.98px) {
-            .about {
-                left: -3vw;
+            .overlay {
+                display: block;
+                position: fixed;
+                top: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.7);
+                z-index: 1100;
+                opacity: 1;
             }
-        }
 
-        @media (min-width: 992px) {
-            .about {
-                left: -1.8vw;
-            }
-        }
+            #play-now {
+                background-image: url(https://d36mxiodymuqjm.cloudfront.net/website/home/bg_home_hero_chaos.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: flex;
+                align-content: stretch;
 
-        @media (min-width: 1200px) {
-            .about {
-                left: -3vw;
-            }
-        }
-
-        .about {
-            &.container {
-                background: rgba(0,0,0,0.75);
-                border-radius: 8px;
-                padding: 40px;
-                z-index: 0;
-                position: relative;
-                top: -9vh;
-                color: $text-color;
-
-                #about-welcome-msg {
-                    text-transform: uppercase;
+                .sp-logo {
+                    z-index: 100;
+                    position: relative;
+                    top: 0;
+                    left: 1vw;
                 }
 
-                #play-now-btn {
-                    background: linear-gradient(180deg,#ffffb7 0,#ff9300 16%,#650000 82%,#f00 100%);
-                    border: 2px solid #fff188;
-                    border-radius: 6px;
-                    padding: 8px 64px;
-                    transition: transform .2s ease-out;
-                    color: #fff7b9;
-                    font-family: nanami-bold;
-                    font-size: 30px;
-                    text-shadow: 0 0 8px #feffddd5;
-                    text-transform: uppercase;
+                @media (min-width: 992px) and (max-width: 1199.98px) {
+                    .sp-logo {
+                        left: 8vw;
+                    }
+                }
 
-                    &:hover {
-                        transform: scale(1.05);
+                @media (max-width: 575.98px) {
+                    .about {
+                        &.container {
+                            left: 0;
+                        }
                     }
                 }
 
                 @media (max-width: 991.98px) {
-                    #play-now-btn {
-                        font-size: 24px !important;
+                    .about {
+                        left: -3vw;
+                    }
+                }
+
+                @media (min-width: 992px) {
+                    .about {
+                        left: -1.8vw;
+                    }
+                }
+
+                @media (min-width: 1200px) {
+                    .about {
+                        left: -3vw;
+                    }
+                }
+
+                .about {
+                    &.container {
+                        background: rgba(0,0,0,0.75);
+                        border-radius: 8px;
+                        padding: 40px;
+                        z-index: 0;
+                        position: relative;
+                        top: -9vh;
+                        color: $text-color;
+
+                        #play-now-btn {
+                            background: linear-gradient(180deg,#ffffb7 0,#ff9300 16%,#650000 82%,#f00 100%);
+                            border: 2px solid #fff188;
+                            border-radius: 6px;
+                            padding: 8px 64px;
+                            transition: transform .2s ease-out;
+                            color: #fff7b9;
+                            font-family: nanami-bold;
+                            font-size: 30px;
+                            text-shadow: 0 0 8px #feffddd5;
+                            text-transform: uppercase;
+
+                            &:hover {
+                                transform: scale(1.05);
+                            }
+                        }
+
+                        @media (max-width: 991.98px) {
+                            #play-now-btn {
+                                font-size: 24px !important;
+                            }
+                        }
+                    }
+                }
+
+                .row {
+                    &.spacer {
+                        min-height: 10vh;
                     }
                 }
             }
-        }
 
-        .row {
-            &.spacer {
-                min-height: 10vh;
+            #about-player {
+                #how-to-battle {
+                    background-image: url("https://d36mxiodymuqjm.cloudfront.net/website/home/thumb_battle.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    min-height: 300px; // don't lke this
+                }
+
+                #card-ownership {
+                    background-image: url("https://d36mxiodymuqjm.cloudfront.net/website/home/thumb_cards.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    min-height: 300px; // don't lke this
+                }
+
+                #community {
+                    background-image: url("https://d36mxiodymuqjm.cloudfront.net/website/home/thumb_community.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    min-height: 300px; // don't lke this
+                }
             }
         }
     }
