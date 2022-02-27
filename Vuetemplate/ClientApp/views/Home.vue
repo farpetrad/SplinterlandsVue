@@ -103,13 +103,30 @@
             left: 1vw;
         }
 
+        @media (max-width: 991.98px) {
+            .about {
+                left: 0.7vw;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .about {
+                left: -1.8vw;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .about {
+                left: -3vw;
+            }
+        }
+
         .about {
             background: rgba(0,0,0,0.75);
             border-radius: 8px;
             padding: 40px;
             z-index: 0;
             position: relative;
-            left: -3vw;
             top: -9vh;
             color: $text-color;
         }
