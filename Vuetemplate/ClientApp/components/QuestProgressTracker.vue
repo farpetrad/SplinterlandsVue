@@ -1,14 +1,15 @@
 ﻿<template>
     <div id="quest-progress-tracker" class="info">
         <div class="progress-meter quest neutral">
-            <div class="progress-meter-icon life-icon">
-                <img alt="Defend the Borders" src="https://d36mxiodymuqjm.cloudfront.net/website/ui_elements/quests/icon_life_active.svg" class="img-fluid"/>
+            <div class="progress-meter-icon sneak-icon">
+                <img :alt="currentIcon.alt" :src="currentIcon.src" class="img-fluid"/>
             </div>
             <div class="progress-meter-progress">
                 <div :class="{ 'progress-info pb-3' : true,  'mx-3' : !screenIsSmall}">
                     <span class="progress-info-title">
                         Quest
-                        <img class="icon-info" src="https://d36mxiodymuqjm.cloudfront.net/website/ui_elements/popups/icon_info.svg"
+                        <img class="icon-info" 
+                             src="https://d36mxiodymuqjm.cloudfront.net/website/ui_elements/popups/icon_info.svg"
                              data-toggle="tooltip"
                              data-placement="top"
                              title=""
@@ -35,7 +36,32 @@
 </template>
 
 <script setup>
-    import { inject, computed } from 'vue';
+    import { inject, computed, reactive } from 'vue';
+
+    const props = defineProps({
+        quest: {
+            type: String,
+            required: false,
+            default: ''
+        }
+    });
+
+    const currentIcon = computed(() => {
+        return state.icons[props.quest];
+    });
+
+    const state = reactive({
+        icons: {
+            earth: {
+                src: 'https://d36mxiodymuqjm.cloudfront.net/website/ui_elements/quests/icon_earth_active.svg',
+                alt: 'Lyannas Call',
+            },
+            sneak: {
+                src: 'https://d36mxiodymuqjm.cloudfront.net/website/ui_elements/quests/btn_round_sneak.svg',
+                alt: 'Stealth Mission'
+            }
+        }
+    })
 
     const screenSize = inject('screenSize', {});
     const screenIsSmall = computed(() => {
@@ -70,6 +96,11 @@
                     &.life-icon {
                         background: transparent radial-gradient(closest-side at 50% 50%,#767676 0,#000 100%) 0 0 no-repeat padding-box;
                         border-color: #fff;
+                        border: none;
+                    }
+
+                    &.sneak-icon {
+                        border: none;
                     }
                 }
 
@@ -135,6 +166,7 @@
                     z-index: 1;
                     max-height: 59px;
                     left: -0.3vw;
+                    top: 0.2vh;
 
                     img {
                         transform: scale(1.0) translateY(-2vh);

@@ -20,7 +20,7 @@
                         <template v-slot:body>
                             <div>
                                 This is a body
-                                <img src="../assets/500px-Vue.js_Logo_2.svg.png"
+                                <img src="../../assets/500px-Vue.js_Logo_2.svg.png"
                                      class="img-fluid"
                                      alt="vue logo" />
                             </div>
@@ -33,75 +33,22 @@
                 </transition>
             </div>
             <div class="col-12 px-0 mx-0">
-                <section id="play-now">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 col-xl-6 col-md-8 offset-xl-3 offset-md-2">
-                                <img class="sp-logo mt-5 img-fluid" 
-                                     alt="Splinterlands" 
-                                     src="https://d36mxiodymuqjm.cloudfront.net/website/home/splinterlands_logo_fx_1000.png" />
-                                <div class="about container">
-                                    <div class="row spacer"></div>
-                                    <div class="row mb-5">
-                                        <div class="col-12 pb-3 text-center">
-                                            <h6 id="about-welcome-msg">Welcome back Farpetrad</h6>
-                                        </div>
-                                        <div class="offset-0 offset-lg-2 col-12 col-lg-8 offset-md-1 col-md-10">
-                                            <button id="play-now-btn" class="w-100">Play Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="about-player">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12 col-md-4 text-center" id="how-to-battle">
-                                <a href="#">
-                                    <h6 class="motion-glow heading motion-glow-tall motion-glow-wrap">how to battle</h6>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-4 text-center" id="card-ownership">
-                                <a href="#">
-                                    <h6 class="motion-glow heading motion-glow-tall motion-glow-wrap">card ownership</h6>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-4 text-center" id="community">
-                                <a href="#">
-                                    <h6 class="motion-glow heading motion-glow-tall">community</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="status" class="pt-5 pb-3">
-                    <div class="container mt-5">
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <h6 class="heading">status</h6>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <QuestProgressTracker></QuestProgressTracker>
-                            </div>
-                            <div :class="{'col-12 col-lg-6' : true, 'pt-3' : screenIsSmallOrMedium}">
-                                <PlayerRanking></PlayerRanking>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <play-now></play-now>
+                <about-player></about-player>
+                <status></status>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-    import { provide, inject, readonly, ref, computed, defineAsyncComponent } from 'vue';
+    import { provide, inject, readonly, ref, computed, defineAsyncComponent, defineComponent } from 'vue';
 
+    import PlayNow from './components/PlayNow';
     // we are going to load these async since they don't show until the user scrolls some
-    const QuestProgressTracker = defineAsyncComponent(() => import('../components/QuestProgressTracker.vue'));
-    const PlayerRanking = defineAsyncComponent(() => import('../components/PlayerRanking.vue'));
+    const AboutPlayer = defineAsyncComponent(() => import('./components/AboutPlayer.vue'));
+    const Status = defineAsyncComponent(() => import('./components/Status.vue'));
+    
 
     const screenSize = inject('screenSize', {});
 
