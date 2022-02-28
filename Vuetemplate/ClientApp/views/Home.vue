@@ -82,10 +82,10 @@
                             <div class="col-12 text-center">
                                 <h6 class="heading">status</h6>
                             </div>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-lg-6">
                                 <QuestProgressTracker></QuestProgressTracker>
                             </div>
-                            <div :class="{'col-12 col-md-6' : true, 'pt-3' : screenIsSmall}">
+                            <div :class="{'col-12 col-lg-6' : true, 'pt-3' : screenIsSmallOrMedium}">
                                 <PlayerRanking></PlayerRanking>
                             </div>
                         </div>
@@ -105,8 +105,8 @@
 
     const screenSize = inject('screenSize', {});
 
-    const screenIsSmall = computed(() => {
-        return screenSize.value.screenSize.sm === true;
+    const screenIsSmallOrMedium = computed(() => {
+        return screenSize.value.screenSize.sm === true || screenSize.value.screenSize.md === true;
     })
     
     // use ref instead of state as this will be reactive when used by inject('modalOpen')

@@ -1,6 +1,6 @@
 ﻿<template>
     <div id="sm-navbar">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-0">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-0">
             <div class="navbar-header">
                 <a class="navbar-brand py-0 mr-0" href="#"></a>
             </div>
@@ -108,116 +108,118 @@
 <style lang="scss">
     #sm-navbar {
 
-        .navbar {
-            background-color: $navbar-bg;
+        nav {
+            &.navbar {
+                background-color: $navbar-bg;
 
-            .navbar-header {
-                max-height: 64px;
+                .navbar-header {
+                    max-height: 64px;
+                }
+
+                .col-center {
+                    margin-top: auto;
+                    margin-bottom: auto;
+                }
             }
 
-            .col-center {
-                margin-top: auto;
-                margin-bottom: auto;
+            .navbar-brand {
+                background-image: url(https://d36mxiodymuqjm.cloudfront.net/website/icons/img_icon_splinterlands.svg);
+                max-width: 78px;
+                max-height: 78px;
+                min-width: 64px;
+                min-height: 64px;
+                background-repeat: no-repeat;
             }
-        }
 
-        .navbar-brand {
-            background-image: url(https://d36mxiodymuqjm.cloudfront.net/website/icons/img_icon_splinterlands.svg);
-            max-width: 78px;
-            max-height: 78px;
-            min-width: 64px;
-            min-height: 64px;
-            background-repeat: no-repeat;
-        }
-
-        .dropdown {
-            .dropdown-profile {
-                position: absolute;
-                top: -1vh;
-                left: -3vw;
-
-                .dropdown-profile-frame {
+            .dropdown {
+                .dropdown-profile {
                     position: absolute;
-                    max-width: 48px;
-                    max-height: 48px;
-                    top: 0;
-                    left: 0;
-                    z-index: 1;
+                    top: -1vh;
+                    left: -3vw;
+
+                    .dropdown-profile-frame {
+                        position: absolute;
+                        max-width: 48px;
+                        max-height: 48px;
+                        top: 0;
+                        left: 0;
+                        z-index: 1;
+                    }
+
+                    .dropdown-profile-avatar {
+                        position: absolute;
+                        max-width: 36px;
+                        max-height: 36px;
+                        z-index: 10;
+                        top: 5px;
+                        left: 24px;
+                        transform: translateX(-50%);
+                    }
                 }
 
-                .dropdown-profile-avatar {
-                    position: absolute;
-                    max-width: 36px;
-                    max-height: 36px;
-                    z-index: 10;
-                    top: 5px;
-                    left: 24px;
-                    transform: translateX(-50%);
-                }
-            }
-
-            &:not(.dropright) {
-                .dropdown-menu-language {
-                    left: 4vw;
-                }
-
-                .dropdown-menu-profile {
-                    left: 6vw;
-                }
-
-                @media (min-width: 992px) {
+                &:not(.dropright) {
                     .dropdown-menu-language {
-                        left: -5vw;
+                        left: 4vw;
                     }
 
                     .dropdown-menu-profile {
-                        left: -10vw;
+                        left: 6vw;
+                    }
+
+                    @media (min-width: 992px) {
+                        .dropdown-menu-language {
+                            left: -5vw;
+                        }
+
+                        .dropdown-menu-profile {
+                            left: -10vw;
+                        }
+                    }
+
+                    @media (min-width: 1200px) {
+                        .dropdown-menu-language {
+                            left: -3vw;
+                        }
+
+                        .dropdown-menu-profile {
+                            left: -6vw;
+                        }
                     }
                 }
 
-                @media (min-width: 1200px) {
+                &.dropright {
                     .dropdown-menu-language {
-                        left: -3vw;
-                    }
-
-                    .dropdown-menu-profile {
-                        left: -6vw;
-                    }
-                }
-            }
-
-            &.dropright {
-                .dropdown-menu-language {
-                    left: 6vw;
-                    top: 2.5vh;
-                }
-
-                .dropdown-menu-profile {
-                    top: 0.5vh;
-                    left: 14vw;
-                }
-
-                @media (max-width: 576px) {
-                    .dropdown-menu-language {
-                        left: 10vw;
-                        top: 5vh;
-                    }
-
-                    .dropdown-menu-profile {
-                        top: 3.5vh;
-                        left: 18vw;
-                    }
-                }
-
-                @media (min-width: 768px) {
-                    .dropdown-menu-language {
-                        left: 10vw;
-                        top: 5vh;
+                        left: 6vw;
+                        top: 2.5vh;
                     }
 
                     .dropdown-menu-profile {
                         top: 0.5vh;
-                        left: 18vw;
+                        left: 14vw;
+                    }
+
+                    @media (max-width: 576px) {
+                        .dropdown-menu-language {
+                            left: 10vw;
+                            top: 5vh;
+                        }
+
+                        .dropdown-menu-profile {
+                            top: 3.5vh;
+                            left: 18vw;
+                        }
+                    }
+
+                    @media (min-width: 768px) {
+                        .dropdown-menu-language {
+                            left: 10vw;
+                            top: 5vh;
+                        }
+
+                        .dropdown-menu-profile {
+                            top: 0.5vh;
+                            left: 18vw;
+                        }
                     }
                 }
             }
