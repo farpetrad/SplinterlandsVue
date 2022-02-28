@@ -37,7 +37,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-xl-6 col-md-8 offset-xl-3 offset-md-2">
-                                <img class="sp-logo mt-5 img-fluid" alt="Splinterlands" src="https://d36mxiodymuqjm.cloudfront.net/website/home/splinterlands_logo_fx_1000.png" />
+                                <img class="sp-logo mt-5 img-fluid" 
+                                     alt="Splinterlands" 
+                                     src="https://d36mxiodymuqjm.cloudfront.net/website/home/splinterlands_logo_fx_1000.png" />
                                 <div class="about container">
                                     <div class="row spacer"></div>
                                     <div class="row mb-5">
@@ -80,6 +82,12 @@
                             <div class="col-12 text-center">
                                 <h6 class="heading">status</h6>
                             </div>
+                            <div class="col-12 col-md-6">
+                                <QuestProgressTracker></QuestProgressTracker>
+                            </div>
+                            <div :class="{'col-12 col-md-6' : true, 'pt-3' : screenIsSmall}">
+                                <PlayerRanking></PlayerRanking>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -89,7 +97,17 @@
 </template>
 
 <script setup>
-    import { provide, readonly, ref } from 'vue';
+    import { provide, inject, readonly, ref, computed, defineAsyncComponent } from 'vue';
+
+    // we are going to load these async since they don't show until the user scrolls some
+    const QuestProgressTracker = defineAsyncComponent(() => import('../components/QuestProgressTracker.vue'));
+    const PlayerRanking = defineAsyncComponent(() => import('../components/PlayerRanking.vue'));
+
+    const screenSize = inject('screenSize', {});
+
+    const screenIsSmall = computed(() => {
+        return screenSize.value.screenSize.sm === true;
+    })
     
     // use ref instead of state as this will be reactive when used by inject('modalOpen')
     const showModal = ref(false);
