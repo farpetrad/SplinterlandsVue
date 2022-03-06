@@ -65,7 +65,8 @@
 
     const screenSize = inject('screenSize', {});
     const screenIsSmall = computed(() => {
-        return screenSize.value.screenSize.sm === true;
+        if (!screenSize) return false;
+        return screenSize.value.sm === true;
     })
 </script>
 
