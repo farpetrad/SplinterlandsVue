@@ -1,7 +1,7 @@
 ﻿import { createRouter, createWebHistory } from 'vue-router';
 
-import Home from 'views/home/Home';
-import store from '../store';
+import Home from '@/views/home/Home.vue';
+import store from '@/store/index.js';
 
 
 const router = createRouter({
@@ -17,13 +17,13 @@ const router = createRouter({
             path: '/about',
             props: false,
             name: 'About',
-            component: () => import (/*webpackChunkName: "about" */ 'views/About'),
+            component: () => import (/*webpackChunkName: "about" */ '@/views/About.vue'),
         }
     ],
 });
 
 router.beforeEach(async (to, from, next) => {
-    document.title = `${store.getters.siteName} - ${to.name}`;
+    document.title = `${store.getters.siteName} - ${String(to.name)}`;
 
     return await next();
 });

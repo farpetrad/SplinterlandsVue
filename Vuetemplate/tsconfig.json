@@ -1,0 +1,38 @@
+﻿{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "declaration": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noLib": false,
+    "sourceMap": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es2015",
+
+    "paths": {
+      "@t/*": [ "./@types/*" ],
+      "@c/*": [ "./ClientApp/components/*" ],
+      "@/*": [ "./ClientApp/*" ],
+      "@fortawesome/fontawesome-common-types": [
+        "./node_modules/@fortawesome/fontawesome-common-types/index"
+      ]
+    },
+  },
+
+  "exclude": [
+    "./node_modules",
+  ],
+
+  "include": [
+    "./@types/**/*.d.ts",
+    "./src/**/*.ts",
+    "./src/**/*.vue",
+  ],
+}

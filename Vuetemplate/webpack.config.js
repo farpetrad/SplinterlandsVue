@@ -32,7 +32,7 @@ console.log(`Using babel config: ${path.resolve(__dirname, './babel.config.js')}
 module.exports = {
     context: path.resolve(__dirname, appbasePath),
     entry: {
-        main: './main.js',
+        main: './main.ts',
     },
     externals: {
         //vue: 'Vue'
@@ -46,7 +46,7 @@ module.exports = {
     sourceMapFilename: '[file].map',
   },
   resolve: {
-    extensions: ['.vue', '.js', '.json'],
+    extensions: ['.vue', '.js', '.json', '.ts'],
     alias: {
       '@': path.resolve(__dirname, appbasePath),
       components: path.resolve(__dirname, appbasePath + 'components'),
@@ -54,7 +54,20 @@ module.exports = {
     }
   },
   module: {
-    rules: [      
+      rules: [
+          {
+              test: /\.ts$/,
+              exclude: /node_modules/,
+              use: [
+                  {
+                      loader: 'ts-loader',
+                      options: {
+                          configFile: path.resolve(__dirname, './tsconfig.json'),
+                          appendTsSuffixTo: [/\.vue$/]
+                      }
+                  }
+              ]
+          },
       {
         test: /\.vue$/,
         exclude: /node_modules/,

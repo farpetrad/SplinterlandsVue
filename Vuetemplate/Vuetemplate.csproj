@@ -5,6 +5,24 @@
     <LangVersion>latest</LangVersion>
     <StartupObject>VueTemplate.Program</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="%40types\shims\vue.d.ts" />
+    <None Remove="ClientApp\main.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="@types\shims\vue.d.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+  </ItemGroup>
  
 
 </Project>
