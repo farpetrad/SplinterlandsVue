@@ -1,6 +1,15 @@
 ﻿import { reactive } from 'vue'
 
-const screenSize = reactive({
+interface IScreensize {
+    sm: boolean;
+    md: boolean;
+    lg: boolean;
+    xl: boolean;
+}
+
+export default IScreensize;
+
+export const screenSize = reactive<IScreensize>({
     sm: false,
     md: false,
     lg: false,
@@ -19,7 +28,3 @@ const screenSize = reactive({
 
     window.onunload = () => { window.removeEventListener('resize', handleResize) };
 })()
-
-export default {
-    screenSize,
-};

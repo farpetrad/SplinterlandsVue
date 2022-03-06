@@ -7,11 +7,11 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
     import { provide, ref } from 'vue';
-    import screenSize from './utilities/screensize.js';
+    import IScreensize, { screenSize }  from './utilities/screensize';
 
-    const size = ref(screenSize);
+    const size = ref<IScreensize>(screenSize);
     provide('screenSize', size);
 </script>
 
