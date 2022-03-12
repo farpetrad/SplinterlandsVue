@@ -21,8 +21,8 @@
     </transition>
 </template>
 
-<script setup>
-    import { inject } from 'vue';
+<script setup lang="ts">
+    import { inject, defineEmits } from 'vue';
 
     const props = defineProps({
         title: {

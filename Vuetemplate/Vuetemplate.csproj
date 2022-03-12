@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="@types\shims\vue.d.ts" />
+    <TypeScriptCompile Include="ClientApp\components\nav\Drawer.spec.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
   </ItemGroup>
  

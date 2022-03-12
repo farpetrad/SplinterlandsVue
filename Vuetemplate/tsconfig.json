@@ -1,38 +1,45 @@
 ﻿{
   "compilerOptions": {
     "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "declaration": false,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "noLib": false,
-    "sourceMap": true,
     "strict": true,
-    "strictPropertyInitialization": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "es2015",
-
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "baseUrl": ".",
     "paths": {
-      "@t/*": [ "./@types/*" ],
+      "@t/*": [ "./ClientApp/@types/*" ],
       "@c/*": [ "./ClientApp/components/*" ],
       "@/*": [ "./ClientApp/*" ],
       "@fortawesome/fontawesome-common-types": [
         "./node_modules/@fortawesome/fontawesome-common-types/index"
       ]
     },
+    "types": [
+      "webpack-env",
+      "jest"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
 
   "exclude": [
-    "./node_modules",
+    "./node_modules"
   ],
 
   "include": [
     "./@types/**/*.d.ts",
-    "./src/**/*.ts",
-    "./src/**/*.vue",
-  ],
+    "./ClientApp/**/*.ts",
+    "./ClientApp/**/*.vue"
+  ]
 }
