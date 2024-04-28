@@ -1,4 +1,5 @@
 # Splinterlands site in Vue
+This solution requires a Fontawesome pro license.  
 
 ## Features
  * .NET 6 host
